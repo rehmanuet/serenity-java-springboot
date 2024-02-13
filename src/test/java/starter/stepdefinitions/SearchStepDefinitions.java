@@ -1,5 +1,7 @@
 package starter.stepdefinitions;
 
+import DriverManager.Browser;
+import DriverManager.CustomWebDriverProvider;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -7,9 +9,20 @@ import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.page.TheWebPage;
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import starter.navigation.DuckDuckGoHomePage;
 import starter.navigation.NavigateTo;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import starter.search.LookForInformation;
+
+import java.net.MalformedURLException;
 
 public class SearchStepDefinitions {
 
@@ -17,14 +30,13 @@ public class SearchStepDefinitions {
     WebDriver driver;
 
     @Given("{actor} is researching things on the internet")
-    public void researchingThings(Actor actor) {
-
-        System.out.println(driver.getTitle());
+    public void researchingThings(Actor actor) throws MalformedURLException {
         actor.wasAbleTo(NavigateTo.theSearchHomePage());
     }
 
     @When("{actor} looks up {string}")
-    public void searchesFor(Actor actor, String term) {
+    public void searchesFor(Actor actor, String term) throws MalformedURLException {
+
         actor.attemptsTo(
                 LookForInformation.about(term)
         );
@@ -32,8 +44,29 @@ public class SearchStepDefinitions {
 
     @Then("{actor} should see information about {string}")
     public void should_see_information_about(Actor actor, String term) {
+
+//        assertThat(driver.getTitle(), CoreMatchers.containsString(term));
         actor.attemptsTo(
                 Ensure.that(TheWebPage.title()).containsIgnoringCase(term)
         );
+    }
+
+    @Given("{actor} opens EliteSingle\\(US)")
+    public void sergeyOpensEliteSingleUS(Actor actor) {
+        driver.get("https://www.elitesingles.com/");
+    }
+
+    @When("he wants to reset his password")
+    public void heWantsToResetHisPassword() {
+        driver.findElement(By.cssSelector("[id='show-login']")).click();
+        driver.findElement(By.cssSelector("[class*='LoginForm_login-form__forgPass'] [href]")).click();
+    }
+
+    @Then("he enters email {string}")
+    public void heEntersEmail(String arg0) {
+        driver.findElement(By.cssSelector("[class='spark-input'][autocomplete='username']")).sendKeys(arg0);
+
+        System.out.println("test");
+
     }
 }

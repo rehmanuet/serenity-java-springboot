@@ -17,8 +17,8 @@ public class CustomWebDriverProvider implements DriverSource {
         }
     }
 
-    public Browser initBrowser() throws MalformedURLException {
-        WebDriver driver = DriverFactory.init("FIREFOX", "locale");
+    public static Browser initBrowser() throws MalformedURLException {
+        WebDriver driver = DriverFactory.init("CHROME", "locale");
         return new Browser(driver, TimeUnit.SECONDS, 5, 30);
     }
 
