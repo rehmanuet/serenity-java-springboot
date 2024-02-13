@@ -18,10 +18,10 @@ import java.util.Map;
 public class DriverFactory {
 
 
-    static public WebDriver init(String device, String locale) throws MalformedURLException {
+    static public WebDriver init(Device device, String locale) throws MalformedURLException {
 
-        switch (device) {
-            case "CHROME": {
+        switch (device.driver()) {
+            case CHROME: {
 //                WebDriverManager.chromedriver().setup();
                 WebDriverManager.chromedriver().driverVersion("121.0").setup();
                 ChromeOptions options = new ChromeOptions();
@@ -30,7 +30,7 @@ public class DriverFactory {
                 options.setExperimentalOption("prefs", prefs);
                 return new ChromeDriver(options);
             }
-            case "FIREFOX": {
+            case FIREFOX: {
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxProfile profile = new FirefoxProfile();
 //                profile.setPreference("intl.accept_languages", String.format("%s-%s", locale.language(), locale.country()));
@@ -38,11 +38,11 @@ public class DriverFactory {
                 options.setProfile(profile);
                 return new FirefoxDriver(options);
             }
-            case "EDGE": {
+            case EDGE: {
                 WebDriverManager.edgedriver().setup();
                 return new EdgeDriver();
             }
-            case "SAFARI": {
+            case SAFARI: {
                 WebDriverManager.safaridriver().setup();
                 return new SafariDriver();
             }

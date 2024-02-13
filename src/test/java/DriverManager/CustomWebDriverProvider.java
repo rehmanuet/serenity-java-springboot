@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
+import static DriverManager.Driver.*;
+
 public class CustomWebDriverProvider implements DriverSource {
 
     @Override
@@ -18,7 +20,7 @@ public class CustomWebDriverProvider implements DriverSource {
     }
 
     public static Browser initBrowser() throws MalformedURLException {
-        WebDriver driver = DriverFactory.init("CHROME", "locale");
+        WebDriver driver = DriverFactory.init(new Device().driver(EDGE), "locale");
         return new Browser(driver, TimeUnit.SECONDS, 5, 30);
     }
 
