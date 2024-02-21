@@ -9,7 +9,7 @@ import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.ensure.Ensure;
+//import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.page.TheWebPage;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
@@ -27,7 +27,7 @@ import starter.search.LookForInformation;
 import java.net.MalformedURLException;
 
 public class SearchStepDefinitions extends UIInteractionSteps {
-// // use if you want your implementation
+    // // use if you want your implementation
     @Managed
     WebDriver driver;
 
@@ -50,10 +50,12 @@ public class SearchStepDefinitions extends UIInteractionSteps {
 //        actor.attemptsTo( Ensure.that(TheWebPage.title()).containsIgnoringCase(term));
     }
 
-    @Given("{actor} opens EliteSingle\\(US)")
-    public void sergeyOpensEliteSingleUS(Actor actor) {
+    @Given("{string} opens EliteSingle\\(US)")
+    public void sergeyOpensEliteSingleUS(String actor) {
 //        driver.get("https://www.elitesingles.com/");
         openUrl("https://www.elitesingles.com/");
+
+
     }
 
     @When("he wants to reset his password")
@@ -68,5 +70,11 @@ public class SearchStepDefinitions extends UIInteractionSteps {
     public void heEntersEmail(String arg0) {
 //        driver.findElement(By.cssSelector("[class='spark-input'][autocomplete='username']")).sendKeys(arg0);
         find("[class='spark-input'][autocomplete='username']").sendKeys(arg0);
+    }
+
+    @Given("Sergey opens EliteSingle\\(US)")
+    public void sergeyOpensEliteSingleUS() {
+        openUrl("https://www.elitesingles.com/");
+
     }
 }

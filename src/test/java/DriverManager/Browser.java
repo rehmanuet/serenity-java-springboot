@@ -9,41 +9,35 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testmonkeys.maui.core.browser.popups.BrowserPopUps;
-import org.testmonkeys.maui.core.elements.location.LocatesElements;
-import org.testmonkeys.maui.core.elements.location.Locator;
 
-public class Browser implements LocatesElements {
-    Logger logger = LoggerFactory.getLogger(org.testmonkeys.maui.core.browser.Browser.class);
+public class Browser {
+    Logger logger = LoggerFactory.getLogger(Browser.class);
     private WebDriver driver;
     private FluentWait<WebDriver> dynamicWaiter;
     private int pageTimeout = 10;
     private int elementTimeout = 10;
     private TimeUnit unit;
     private int step;
-    private BrowserPopUps browserPopUps;
 
     public Browser(WebDriver driver) {
         this.unit = TimeUnit.SECONDS;
         this.step = 1;
         this.driver = driver;
-        this.dynamicWaiter = this.initWaitter(this.elementTimeout, this.step, this.unit);
+        this.dynamicWaiter = this.initWaitter(this.elementTimeout, this.step);
     }
 
-    public Browser(WebDriver driver, TimeUnit unit, int elementTimeout, int pageTimeout) {
+    public Browser(WebDriver driver, int elementTimeout, int pageTimeout) {
         this.unit = TimeUnit.SECONDS;
         this.step = 1;
         this.driver = driver;
         this.elementTimeout = elementTimeout;
-        this.unit = unit;
         this.pageTimeout = pageTimeout;
-//        this.driver.manage().timeouts().pageLoadTimeout((long) pageTimeout, unit);
+        this.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageTimeout));
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(pageTimeout));
-        this.dynamicWaiter = this.initWaitter(elementTimeout, this.step, unit);
+        this.dynamicWaiter = this.initWaitter(elementTimeout, this.step);
     }
 
     public byte[] takeScreenshot() {
@@ -54,24 +48,8 @@ public class Browser implements LocatesElements {
         return this.dynamicWaiter;
     }
 
-    public WebElement findElement(Locator locator) {
-        return (WebElement) this.dynamicWaiter.until((webDriver) -> {
-            return webDriver.findElement(locator.getSeleniumLocator());
-        });
-    }
-
-    public List<WebElement> findElements(Locator locator) {
-        return (List) this.dynamicWaiter.until((webDriver) -> {
-            return webDriver.findElements(locator.getSeleniumLocator());
-        });
-    }
-
-    private FluentWait<WebDriver> initWaitter(int timeout, int step, TimeUnit unit) {
-        return (new FluentWait(this.driver)).withTimeout(Duration.ofSeconds(101)).pollingEvery(Duration.ofSeconds(100)).ignoring(NoSuchElementException.class);
-    }
-
-    public BrowserPopUps getPopUps() {
-        return this.browserPopUps;
+    private FluentWait<WebDriver> initWaitter(int timeout, int step) {
+        return (new FluentWait(this.driver)).withTimeout(Duration.ofSeconds(timeout)).pollingEvery(Duration.ofSeconds(step)).ignoring(NoSuchElementException.class);
     }
 
     public String getTitle() {
@@ -100,7 +78,7 @@ public class Browser implements LocatesElements {
     }
 
     public void waitForPageToLoad() {
-        this.initWaitter(this.pageTimeout, this.step, this.unit).until((d) -> {
+        this.initWaitter(this.pageTimeout, this.step).until((d) -> {
             return ((JavascriptExecutor) d).executeScript("return document.readyState", new Object[0]).equals("complete");
         });
     }

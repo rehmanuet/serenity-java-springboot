@@ -98,16 +98,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testmonkeys</groupId>
-            <artifactId>maui</artifactId>
-            <version>0.0.42</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.26</version>
-            <scope>test</scope>
+            <version>1.18.30</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
