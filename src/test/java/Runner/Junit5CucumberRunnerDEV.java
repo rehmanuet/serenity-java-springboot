@@ -8,6 +8,6 @@ import org.junit.platform.suite.api.Suite;
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
-@ExcludeTags(value = {"ignore", "red"})
+@ExcludeTags(value = {"ignore", "qa"})
 public class Junit5CucumberRunnerDEV {
 }

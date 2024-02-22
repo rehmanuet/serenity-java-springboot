@@ -1,5 +1,6 @@
 package Runner;
 
+import org.junit.platform.suite.api.ExcludeTags;
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.SelectClasspathResource;
 import org.junit.platform.suite.api.Suite;
@@ -7,5 +8,6 @@ import org.junit.platform.suite.api.Suite;
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
-public class Junit5CucumberRunner {
+@ExcludeTags(value = {"ignore", "dev"})
+public class Junit5CucumberRunnerQA {
 }

@@ -1,14 +1,14 @@
-Feature: Search by keyword
+Feature: Landing Page
 
 
-  @green
+  @dev
   Scenario: Forgot Password Flow
     Given Sergey opens EliteSingle(US)
     When he wants to reset his password
     Then he enters email "test@gmail.com"
 
 
-#  @red
+#  @qa
 #  Scenario: Searching for 'green'
 #    Given Sergey is researching things on the internet
 #    When he looks up "green"

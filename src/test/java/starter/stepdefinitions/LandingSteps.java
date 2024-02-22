@@ -1,33 +1,18 @@
 package starter.stepdefinitions;
 
-import DriverManager.Browser;
-import DriverManager.CustomWebDriverProvider;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.annotations.Managed;
-import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.serenitybdd.screenplay.Actor;
-//import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.questions.page.TheWebPage;
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import starter.navigation.DuckDuckGoHomePage;
 import starter.navigation.NavigateTo;
-
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import starter.search.LookForInformation;
-
 import java.net.MalformedURLException;
 
-public class SearchStepDefinitions extends UIInteractionSteps {
-    // // use if you want your implementation
+public class LandingSteps extends UIInteractionSteps {
     @Managed
     WebDriver driver;
 

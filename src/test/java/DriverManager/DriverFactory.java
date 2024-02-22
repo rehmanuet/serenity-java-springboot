@@ -22,11 +22,11 @@ public class DriverFactory {
 
         switch (device.driver()) {
             case CHROME: {
-//                WebDriverManager.chromedriver().setup();
-                WebDriverManager.chromedriver().driverVersion("121.0").setup();
+                //TODO Extract driver version
+                WebDriverManager.chromedriver().driverVersion("121").setup();
                 ChromeOptions options = new ChromeOptions();
                 Map<String, Object> prefs = new HashMap<>();
-//                prefs.put("intl.accept_languages", String.format("%s-%s", locale.language(), locale.country()));
+                // prefs.put("intl.accept_languages", String.format("%s-%s", locale.language(), locale.country()));
                 options.setExperimentalOption("prefs", prefs);
                 return new ChromeDriver(options);
             }
