@@ -6,15 +6,27 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.core.steps.UIInteractionSteps;
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.serenitybdd.junit.spring.integration.SpringIntegrationMethodRule;
 import net.serenitybdd.screenplay.Actor;
+import org.junit.Rule;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import starter.navigation.NavigateTo;
 import starter.search.LookForInformation;
+
 import java.net.MalformedURLException;
 
+@RunWith(SerenityRunner.class)
+@ContextConfiguration
 public class LandingSteps extends UIInteractionSteps {
     @Managed
     WebDriver driver;
+
+
 
     @Given("{actor} is researching things on the internet")
     public void researchingThings(Actor actor) throws MalformedURLException {
@@ -38,6 +50,7 @@ public class LandingSteps extends UIInteractionSteps {
     @Given("{string} opens EliteSingle\\(US)")
     public void sergeyOpensEliteSingleUS(String actor) {
 //        driver.get("https://www.elitesingles.com/");
+
         openUrl("https://www.elitesingles.com/");
 
 
