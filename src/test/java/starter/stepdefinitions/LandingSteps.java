@@ -13,20 +13,25 @@ import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import starter.navigation.NavigateTo;
 import starter.search.LookForInformation;
+import DriverManager.ScenarioContext;
 
 import java.net.MalformedURLException;
 
 @RunWith(SerenityRunner.class)
-@ContextConfiguration
+@ContextConfiguration(classes = TestContextConfiguration.class)
 public class LandingSteps extends UIInteractionSteps {
     @Managed
     WebDriver driver;
 
+    @Autowired
+    ScenarioContext context;
 
+    @Rule
+    public SpringIntegrationMethodRule springIntegrationMethodRule =
+            new SpringIntegrationMethodRule();
 
     @Given("{actor} is researching things on the internet")
     public void researchingThings(Actor actor) throws MalformedURLException {
@@ -50,7 +55,7 @@ public class LandingSteps extends UIInteractionSteps {
     @Given("{string} opens EliteSingle\\(US)")
     public void sergeyOpensEliteSingleUS(String actor) {
 //        driver.get("https://www.elitesingles.com/");
-
+        System.out.println("");
         openUrl("https://www.elitesingles.com/");
 
 
