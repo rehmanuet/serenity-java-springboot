@@ -5,7 +5,11 @@
     <groupId>com.liita.tas</groupId>
     <artifactId>liita-tas</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>liita-tas-core</module>
+        <module>liita-tas-test</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>LIITA Test Automation Solution</name>
 
@@ -107,7 +111,27 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-core</artifactId>
+            <version>4.0.46</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-screenplay-webdriver</artifactId>
+            <version>4.0.46</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.6.3</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
+
+
     <build>
         <plugins>
             <plugin>
@@ -123,10 +147,11 @@
                 <version>3.1.2</version>
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>
-                        <include>**/Test*.java</include>
-                        <include>**/*TestSuite.java</include>
-                        <include>**/When*.java</include>
+                        <!--                        <include>**/*Test.java</include>-->
+                        <!--                        <include>**/Test*.java</include>-->
+                        <include>**/Junit5CucumberRunnerDEV.java</include>
+                        <!--                        <include>**/*TestSuite.java</include>-->
+                        <!--                        <include>**/When*.java</include>-->
                     </includes>
                     <systemPropertyVariables>
                         <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
@@ -135,14 +160,14 @@
                     <parallel>methods</parallel>
                     <useUnlimitedThreads>true</useUnlimitedThreads>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>integration-test</goal>-->
+<!--                            <goal>verify</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -153,31 +178,31 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>net.serenity-bdd.maven.plugins</groupId>
-                <artifactId>serenity-maven-plugin</artifactId>
-                <version>${serenity.version}</version>
-                <configuration>
-                    <tags>${tags}</tags>
-                    <reports>single-page-html</reports>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>net.serenity-bdd</groupId>
-                        <artifactId>serenity-single-page-report</artifactId>
-                        <version>${serenity.version}</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>serenity-reports</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>aggregate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>net.serenity-bdd.maven.plugins</groupId>-->
+            <!--                <artifactId>serenity-maven-plugin</artifactId>-->
+            <!--                <version>${serenity.version}</version>-->
+            <!--                <configuration>-->
+            <!--                    <tags>${tags}</tags>-->
+            <!--                    <reports>single-page-html</reports>-->
+            <!--                </configuration>-->
+            <!--                <dependencies>-->
+            <!--                    <dependency>-->
+            <!--                        <groupId>net.serenity-bdd</groupId>-->
+            <!--                        <artifactId>serenity-single-page-report</artifactId>-->
+            <!--                        <version>${serenity.version}</version>-->
+            <!--                    </dependency>-->
+            <!--                </dependencies>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>serenity-reports</id>-->
+            <!--                        <phase>post-integration-test</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>aggregate</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
 </project>
