@@ -2,26 +2,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.liita.tas</groupId>
-    <artifactId>liita-tas</artifactId>
+    <groupId>com.lab.tas</groupId>
+    <artifactId>lab-tas</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>liita-tas-core</module>
-        <module>liita-tas-test</module>
+        <module>lab-tas-core</module>
+        <module>lab-tas-test</module>
     </modules>
     <packaging>pom</packaging>
 
-    <name>LIITA Test Automation Solution</name>
+    <name>Test Automation Solution</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <serenity.version>4.0.28</serenity.version>
+        <serenity.version>4.0.46</serenity.version>
         <junit-vintage-engine.version>5.10.1</junit-vintage-engine.version>
         <junit-platform-suite.version>1.10.1</junit-platform-suite.version>
         <cucumber-junit-platform-engine.version>7.15.0</cucumber-junit-platform-engine.version>
-        <webdriver.manager.version>5.3.2</webdriver.manager.version>
+        <webdriver.manager.version>5.7.0</webdriver.manager.version>
         <lombok.version>1.18.30</lombok.version>
-
         <encoding>UTF-8</encoding>
         <tags></tags>
         <webdriver.base.url></webdriver.base.url>
@@ -143,14 +142,6 @@
                     <parallel>methods</parallel>
                     <useUnlimitedThreads>true</useUnlimitedThreads>
                 </configuration>
-                <!--                <executions>-->
-                <!--                    <execution>-->
-                <!--                        <goals>-->
-                <!--                            <goal>integration-test</goal>-->
-                <!--                            <goal>verify</goal>-->
-                <!--                        </goals>-->
-                <!--                    </execution>-->
-                <!--                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -161,31 +152,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!--            <plugin>-->
-            <!--                <groupId>net.serenity-bdd.maven.plugins</groupId>-->
-            <!--                <artifactId>serenity-maven-plugin</artifactId>-->
-            <!--                <version>${serenity.version}</version>-->
-            <!--                <configuration>-->
-            <!--                    <tags>${tags}</tags>-->
-            <!--                    <reports>single-page-html</reports>-->
-            <!--                </configuration>-->
-            <!--                <dependencies>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>net.serenity-bdd</groupId>-->
-            <!--                        <artifactId>serenity-single-page-report</artifactId>-->
-            <!--                        <version>${serenity.version}</version>-->
-            <!--                    </dependency>-->
-            <!--                </dependencies>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <id>serenity-reports</id>-->
-            <!--                        <phase>post-integration-test</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>aggregate</goal>-->
-            <!--                        </goals>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--            </plugin>-->
         </plugins>
     </build>
 </project>
