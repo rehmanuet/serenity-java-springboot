@@ -1,3 +1,14 @@
 #Serenity and Cucumber
 
-Serenity BDD is a library that makes it easier to write high quality automated acceptance tests, with powerful reporting and living documentation features. It has strong support for both web testing with Selenium, and API testing using RestAssured.
+_TODO Update README.MD_
+
+```
+mkdir lab-tas
+cd lab-tas
+git clone https://github.com/rehmanuet/serenity-java.git
+mvn clean verify -Dcucumber.filter.tags="@dev" -Dbrowser=chrome
+```
+
+Following parameter are need to be provided to runner
+1. `-Dcucumber.filter.tags="@dev"` (run specific tagged testcases)
+2. `-Dbrowser=chrome` (run on specific browser eg. firefox/edge/safari)
