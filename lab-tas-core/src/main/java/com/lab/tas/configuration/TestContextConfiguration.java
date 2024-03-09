@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-//@ComponentScan(basePackages = {"context","configuration"})
 @ComponentScan(basePackageClasses = ScenarioContext.class)
 @EnableAutoConfiguration
 @Import(value = {SpringConfiguration.class})
